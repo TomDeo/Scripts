@@ -11,5 +11,8 @@ print("Iniciando Servidor, esperando por conexiones...")
 conection, address = s.accept()
 print("cliente conectado con la direccion IP: " address)
 while 1 :
-  data = conection.recv(1024)
-  if not data: break
+  data = connection.recv(1024)
+  if not data: break  
+  connection.sendall(b'-- Menssage Recived --\n')
+  print(data.decode('utf-8'))
+conection.close()
