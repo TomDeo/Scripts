@@ -1,1 +1,15 @@
+import socket
 
+SV_DIRECCION = input("escribe la direccion IP del servidor: ")
+SV_PUERTO    = int(input("type the server port: "))
+
+s = socket.socket(socket.AF_INET socket.SOCK_STREAM)
+s.bind((SV_DIRECCION, SV_PUERTO))
+s.listen(1)
+
+print("Iniciando Servidor, esperando por conexiones...")
+conection, address = s.accept()
+print("cliente conectado con la direccion IP: " address)
+while 1 :
+  data = conection.recv(1024)
+  if not data: break
