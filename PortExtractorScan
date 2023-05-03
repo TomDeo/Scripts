@@ -1,0 +1,13 @@
+import nmap
+
+N = nmap.PortScanner()
+
+# Escanear el host especificado
+N.scan(hosts="127.0.0.1", arguments="-sS -T4 -p-")
+
+# Obtener los puertos abiertos del host
+open_ports = [port for port in N["127.0.0.1"]["tcp"] if N["127.0.0.1"]["tcp"][port]["state"] == "open"]
+
+# Crear archivo "PORTS" con los puertos abiertos separados por comas
+with open("PORTS", "w") as f:
+    f.write(",".join(str(port) for port in open_ports))
