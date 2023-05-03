@@ -1,0 +1,18 @@
+import re
+
+# Abrir archivo de nmap output y leer su contenido
+with open("nmap_output.txt", "r") as file:
+    nmap_output = file.read()
+
+# Buscar los puertos abiertos en el output de nmap
+open_ports = re.findall(r"\d+/open", nmap_output)
+
+# Extraer los números de puerto de la lista de puertos abiertos
+ports = [int(port.split("/")[0]) for port in open_ports]
+
+# Convertir la lista de puertos en una cadena separada por comas
+ports_str = ",".join(str(port) for port in ports)
+
+# Escribir la cadena de puertos en un archivo
+with open("ports.txt", "w") as file:
+    file.write(ports_str)
